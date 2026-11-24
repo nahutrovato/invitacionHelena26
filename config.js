@@ -59,7 +59,7 @@ window.CONFIG = {
   // Confirmación de asistencia
   confirmarHasta: "2026-12-10",   // A CONFIRMAR
   // Dirección del script de Google (ver INSTRUCCIONES.md). Vacío = MODO DEMO, no guarda nada.
-  sheetUrl: "",
+  sheetUrl: "https://script.google.com/macros/s/AKfycbxxp5Jq7LrNADnoTnGH-qAfuWy64lEQRZmRsz8TZkFVtaGLjNuFHDtiPRl5AaUK-cPr4Q/exec",
 
   // Web de fotos del cumple (la que ya existe).
   fotosUrl: "https://nahutrovato.github.io/cumple_helena26/",
