@@ -4,7 +4,7 @@
 // =====================================================================
 window.CONFIG = {
   // Muestra una franja "Borrador" arriba. Poner en false al publicar.
-  borrador: true,
+  borrador: false,
 
   nombre: "Helena",
   titulo: "Mi Bautismo",
@@ -57,7 +57,7 @@ window.CONFIG = {
   },
 
   // Confirmación de asistencia
-  confirmarHasta: "2026-12-10",   // A CONFIRMAR
+  confirmarHasta: "2026-12-10",
   // Dirección del script de Google (ver INSTRUCCIONES.md). Vacío = MODO DEMO, no guarda nada.
   sheetUrl: "https://script.google.com/macros/s/AKfycbxxp5Jq7LrNADnoTnGH-qAfuWy64lEQRZmRsz8TZkFVtaGLjNuFHDtiPRl5AaUK-cPr4Q/exec",
 
