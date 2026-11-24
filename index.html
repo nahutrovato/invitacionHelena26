@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#fbf1f3">
+  <title>El bautismo de Helena</title>
+  <meta property="og:title" content="El bautismo de Helena">
+  <meta property="og:description" content="Te esperamos para compartir este día tan especial.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=DM+Serif+Display&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+  <div id="draft" class="draft" hidden>Borrador · algunos datos son de ejemplo</div>
+
+  <!-- Portada -->
+  <header class="cover">
+    <img class="deco deco-stars" src="img/estrellas.jpg" alt="">
+    <img class="deco deco-fairy" src="img/hada.jpg" alt="">
+    <div class="arch">
+      <p class="eyebrow" data-f="titulo">Mi Bautismo</p>
+      <h1 class="name" data-f="nombre">Helena</h1>
+      <div class="flourish" aria-hidden="true"></div>
+      <p class="cover-date" id="cover-date"></p>
+      <p class="cover-city" data-f="ciudad"></p>
+      <a class="scroll-hint" href="#bienvenida">
+        <span>Deslizá</span>
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg>
+      </a>
+    </div>
+    <img class="forest" src="img/bosque.jpg" alt="">
+  </header>
+
+  <main>
+    <!-- Bienvenida y familia -->
+    <section id="bienvenida" class="section reveal">
+      <p class="lead" data-f="bienvenida"></p>
+      <div class="family">
+        <div>
+          <h2 class="h-small">Mis papás</h2>
+          <ul id="padres" class="names"></ul>
+        </div>
+        <div>
+          <h2 class="h-small">Mis padrinos</h2>
+          <ul id="padrinos" class="names"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cuenta regresiva -->
+    <section class="section reveal">
+      <h2 class="h-script">Faltan</h2>
+      <div class="countdown" id="countdown">
+        <div><span id="cd-d">0</span><small>días</small></div>
+        <div><span id="cd-h">0</span><small>horas</small></div>
+        <div><span id="cd-m">0</span><small>min</small></div>
+        <div><span id="cd-s">0</span><small>seg</small></div>
+      </div>
+      <p id="cd-done" class="muted" hidden>¡Hoy es el gran día!</p>
+    </section>
+
+    <!-- Dónde y cuándo -->
+    <section class="section reveal">
+      <h2 class="h-title">Dónde y cuándo</h2>
+      <div id="eventos" class="events"></div>
+    </section>
+
+    <!-- Itinerario -->
+    <section id="itinerario-wrap" class="section reveal">
+      <h2 class="h-title">El día</h2>
+      <ol id="itinerario" class="timeline"></ol>
+    </section>
+
+    <!-- Vestimenta -->
+    <section id="vestimenta-wrap" class="section reveal" hidden>
+      <h2 class="h-title">Vestimenta</h2>
+      <p class="big-note" data-f="vestimenta"></p>
+    </section>
+
+    <!-- Regalos -->
+    <section id="regalos-wrap" class="section reveal" hidden>
+      <h2 class="h-title">Regalos</h2>
+      <p id="regalos-texto"></p>
+      <dl id="regalos-datos" class="bank"></dl>
+      <button id="copiar" class="btn btn-soft" type="button">Copiar datos</button>
+      <p id="copiado" class="muted" role="status" hidden>¡Copiado!</p>
+    </section>
+
+    <!-- Confirmación -->
+    <section id="confirmar" class="section reveal rsvp">
+      <h2 class="h-script">¿Nos acompañás?</h2>
+      <p id="rsvp-hasta"></p>
+      <button id="rsvp-open" class="btn btn-big" type="button">Confirmar asistencia</button>
+      <p id="rsvp-ya" class="muted" hidden></p>
+    </section>
+
+    <!-- Fotos -->
+    <section class="section reveal">
+      <h2 class="h-title">Compartí tus fotos</h2>
+      <p>Durante el festejo vas a poder subir tus fotos a nuestro álbum, con el QR que vas a ver en el salón o desde acá.</p>
+      <a id="fotos-link" class="btn btn-soft" href="#" target="_blank" rel="noopener">Ir al álbum de fotos</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="h-script thanks">¡Gracias por acompañarnos!</p>
+    <img src="img/bosque.jpg" alt="">
+  </footer>
+
+  <!-- Modal de confirmación -->
+  <dialog id="rsvp" class="modal" aria-labelledby="rsvp-title">
+    <form id="rsvp-form" class="modal-body" novalidate>
+      <button type="button" class="close" id="rsvp-close" aria-label="Cerrar">×</button>
+      <h2 id="rsvp-title" class="h-script">Confirmá tu asistencia</h2>
+
+      <label for="f-nombre">Nombre y apellido</label>
+      <input id="f-nombre" name="nombre" type="text" autocomplete="name" maxlength="80" required>
+
+      <label for="f-cantidad">¿Cuántos van a venir, contándote?</label>
+      <div class="stepper">
+        <button type="button" data-step="-1" aria-label="Uno menos">−</button>
+        <input id="f-cantidad" name="cantidad" type="number" inputmode="numeric" min="1" max="15" value="1" required>
+        <button type="button" data-step="1" aria-label="Uno más">+</button>
+      </div>
+
+      <fieldset>
+        <legend>¿A qué momento vienen?</legend>
+        <div class="chips">
+          <label><input type="radio" name="evento" value="Ambos" checked><span>A los dos</span></label>
+          <label><input type="radio" name="evento" value="Bautismo"><span>Solo bautismo</span></label>
+          <label><input type="radio" name="evento" value="Festejo"><span>Solo festejo</span></label>
+          <label><input type="radio" name="evento" value="No asiste"><span>No podemos ir</span></label>
+        </div>
+      </fieldset>
+
+      <label for="f-mensaje">Un mensaje para Helena <span class="opt">(opcional)</span></label>
+      <textarea id="f-mensaje" name="mensaje" rows="3" maxlength="500"></textarea>
+
+      <!-- Trampa para robots: las personas no ven este campo -->
+      <input class="hp" name="web" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <p id="f-error" class="error" role="alert" hidden></p>
+      <button type="submit" class="btn btn-big" id="f-enviar">Enviar</button>
+      <p id="f-demo" class="muted small" hidden>Modo demo: la confirmación todavía no se guarda.</p>
+    </form>
+
+    <div id="rsvp-ok" class="modal-body ok" hidden>
+      <h2 class="h-script">¡Gracias!</h2>
+      <p id="ok-texto"></p>
+      <button type="button" class="btn" id="ok-cerrar">Cerrar</button>
+    </div>
+  </dialog>
+
+  <script src="config.js?v=1"></script>
+  <script src="app.js?v=1"></script>
+</body>
+</html>
