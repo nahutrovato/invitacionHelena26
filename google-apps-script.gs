@@ -3,7 +3,7 @@
  * Se pega en: Planilla → Extensiones → Apps Script. Ver INSTRUCCIONES.md.
  */
 var HOJA = "Confirmaciones";
-var COLUMNAS = ["Fecha", "Nombre", "Cantidad", "Asiste a", "Mensaje para Helena"];
+var COLUMNAS = ["Fecha", "Nombre", "Cantidad", "Asiste a", "Mensaje para Helena", "Ocultar"];
 
 function doPost(e) {
   var lock = LockService.getScriptLock();
@@ -30,7 +30,27 @@ function doPost(e) {
   }
 }
 
-function doGet() {
+/**
+ * GET ?accion=mensajes → devuelve solo nombre, mensaje y fecha de quienes dejaron mensaje
+ * (nunca cantidad ni asistencia). Para ocultar un mensaje, escribí algo (ej: "x") en la
+ * columna F "Ocultar" de esa fila.
+ */
+function doGet(e) {
+  if (e && e.parameter && e.parameter.accion === "mensajes") {
+    var hoja = obtenerHoja();
+    var filas = hoja.getLastRow() < 2 ? [] : hoja.getRange(2, 1, hoja.getLastRow() - 1, 6).getValues();
+    var mensajes = filas
+      .filter(function (f) { return String(f[4]).trim() && !String(f[5]).trim(); })
+      .map(function (f) {
+        return {
+          nombre: String(f[1]).replace(/^'/, ""),
+          mensaje: String(f[4]).replace(/^'/, ""),
+          fecha: f[0] instanceof Date ? f[0].toISOString() : "",
+        };
+      })
+      .reverse(); // los más nuevos primero
+    return responder({ ok: true, mensajes: mensajes });
+  }
   return responder({ ok: true, info: "Confirmaciones del bautismo de Helena" });
 }
 
